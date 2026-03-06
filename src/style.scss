@@ -2,6 +2,17 @@
    Pouring layers
    ========================= */
 
+
+@mixin syrup-layer($color) {
+  background: repeating-linear-gradient(
+    45deg,
+    white,
+    white 10px,
+    $color 10px,
+    $color 20px
+  );
+}
+
 @keyframes pour-layer {
   0% {
     transform: translateY(400%);
@@ -25,20 +36,16 @@
 // 3. Replace the hard-coded color (#ffefd5) in the gradient with $color.
 // 4. Use @include syrup-layer(...) inside .syrup.
 .syrup {
+  --syrup-color: #ffefd5;
   position: relative;
   transform: translateY(400%);
-  background: repeating-linear-gradient(
-    45deg,
-    white,
-    white 10px,
-    #ffefd5 10px,
-    #ffefd5 20px
-  );
+  @include syrup-layer(var(--syrup-color));
   width: 100%;
   height: 20%;
   animation: pour-layer 2s 1s forwards;
   z-index: 2;
 }
+
 
 .froth {
   overflow: visible;
